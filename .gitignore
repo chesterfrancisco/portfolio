@@ -1,0 +1,16 @@
+.agents/
+.codex/
+
+laravel_portfolio/vendor/
+laravel_portfolio/node_modules/
+laravel_portfolio/.env
+laravel_portfolio/storage/logs/*.log
+laravel_portfolio/storage/framework/cache/data/
+laravel_portfolio/storage/framework/sessions/
+laravel_portfolio/storage/framework/views/
+laravel_portfolio/bootstrap/cache/*.php
+
+*.log
+.DS_Store
+Thumbs.db
+*.code-workspace
