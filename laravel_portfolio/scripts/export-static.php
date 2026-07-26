@@ -7,7 +7,8 @@ require __DIR__ . '/../vendor/autoload.php';
 $app = require_once __DIR__ . '/../bootstrap/app.php';
 $app->make(Kernel::class)->bootstrap();
 
-$outputDir = realpath(__DIR__ . '/../..') . DIRECTORY_SEPARATOR . 'docs';
+$rootDir = realpath(__DIR__ . '/../..');
+$outputDir = $rootDir . DIRECTORY_SEPARATOR . 'docs';
 
 if (! is_dir($outputDir)) {
     mkdir($outputDir, 0755, true);
@@ -36,3 +37,25 @@ foreach (['nstw', 'dostv', 'rewards', 'uiux'] as $folder) {
 }
 
 echo "Static site exported to ../docs/index.html" . PHP_EOL;
+
+copy($outputDir . DIRECTORY_SEPARATOR . 'index.html', $rootDir . DIRECTORY_SEPARATOR . 'index.html');
+copy($outputDir . DIRECTORY_SEPARATOR . 'photo-me.jpg', $rootDir . DIRECTORY_SEPARATOR . 'photo-me.jpg');
+
+foreach (['nstw', 'dostv', 'rewards', 'uiux'] as $folder) {
+    $sourceDir = $outputDir . DIRECTORY_SEPARATOR . $folder;
+    $targetDir = $rootDir . DIRECTORY_SEPARATOR . $folder;
+
+    if (! is_dir($sourceDir)) {
+        continue;
+    }
+
+    if (! is_dir($targetDir)) {
+        mkdir($targetDir, 0755, true);
+    }
+
+    foreach (glob($sourceDir . DIRECTORY_SEPARATOR . '*.{jpg,jpeg,png,webp}', GLOB_BRACE) as $image) {
+        copy($image, $targetDir . DIRECTORY_SEPARATOR . basename($image));
+    }
+}
+
+echo "Static fallback exported to ../index.html" . PHP_EOL;
