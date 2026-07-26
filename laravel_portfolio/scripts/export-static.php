@@ -40,6 +40,7 @@ echo "Static site exported to ../docs/index.html" . PHP_EOL;
 
 copy($outputDir . DIRECTORY_SEPARATOR . 'index.html', $rootDir . DIRECTORY_SEPARATOR . 'index.html');
 copy($outputDir . DIRECTORY_SEPARATOR . 'photo-me.jpg', $rootDir . DIRECTORY_SEPARATOR . 'photo-me.jpg');
+file_put_contents($rootDir . DIRECTORY_SEPARATOR . '.nojekyll', '');
 
 foreach (['nstw', 'dostv', 'rewards', 'uiux'] as $folder) {
     $sourceDir = $outputDir . DIRECTORY_SEPARATOR . $folder;
