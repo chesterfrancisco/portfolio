@@ -7,7 +7,7 @@ require __DIR__ . '/../vendor/autoload.php';
 $app = require_once __DIR__ . '/../bootstrap/app.php';
 $app->make(Kernel::class)->bootstrap();
 
-$outputDir = realpath(__DIR__ . '/..') . DIRECTORY_SEPARATOR . 'docs';
+$outputDir = realpath(__DIR__ . '/../..') . DIRECTORY_SEPARATOR . 'docs';
 
 if (! is_dir($outputDir)) {
     mkdir($outputDir, 0755, true);
@@ -35,4 +35,4 @@ foreach (['nstw', 'dostv', 'rewards', 'uiux'] as $folder) {
     }
 }
 
-echo "Static site exported to docs/index.html" . PHP_EOL;
+echo "Static site exported to ../docs/index.html" . PHP_EOL;
